@@ -21,9 +21,7 @@ namespace Microsoft.Xna.Framework.Graphics
         internal IGraphicsContext Context { get; private set; }
 #endif
 
-#if !GLES
         private DrawBuffersEnum[] _drawBuffers;
-#endif
 
         enum ResourceType
         {
@@ -323,14 +321,19 @@ namespace Microsoft.Xna.Framework.Graphics
             }
 #endif
 
-#if !GLES
-			// Initialize draw buffer attachment array
-			int maxDrawBuffers;
-            GL.GetInteger(GetPName.MaxDrawBuffers, out maxDrawBuffers);
-            GraphicsExtensions.CheckGLError ();
-			_drawBuffers = new DrawBuffersEnum[maxDrawBuffers];
-			for (int i = 0; i < maxDrawBuffers; i++)
-				_drawBuffers[i] = (DrawBuffersEnum)(FramebufferAttachment.ColorAttachment0Ext + i);
+#if GLES
+            if (glMajorVersion >= 3)
+            {
+#endif
+                // Initialize draw buffer attachment array
+                int maxDrawBuffers;
+                GL.GetInteger(GetPName.MaxDrawBuffers, out maxDrawBuffers);
+                GraphicsExtensions.CheckGLError();
+                _drawBuffers = new DrawBuffersEnum[maxDrawBuffers];
+                for (int i = 0; i < maxDrawBuffers; i++)
+                    _drawBuffers[i] = (DrawBuffersEnum)(FramebufferAttachment.ColorAttachment0Ext + i);
+#if GLES
+            }
 #endif
         }
 
@@ -856,8 +859,14 @@ namespace Microsoft.Xna.Framework.Graphics
             {
                 this.framebufferHelper.BindFramebuffer(glFramebuffer);
             }
-#if !GLES
-            GL.DrawBuffers(this._currentRenderTargetCount, this._drawBuffers);
+
+#if GLES
+            if (glMajorVersion >= 3)
+            {
+#endif
+                GL.DrawBuffers(this._currentRenderTargetCount, this._drawBuffers);
+#if GLES
+            }
 #endif
 
             // Reset the raster state because we flip vertices
