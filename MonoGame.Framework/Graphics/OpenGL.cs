@@ -321,7 +321,6 @@ namespace MonoGame.OpenGL
         TextureBinding2D = 0x8069,
         MaxTextureMaxAnisotropyExt = 0x84FF,
         MaxSamples = 0x8D57,
-        NumExtensions = 0x821D,
     }
 
     internal enum StringName
@@ -576,11 +575,6 @@ namespace MonoGame.OpenGL
         [MonoNativeFunctionWrapper]
         internal delegate IntPtr GetStringDelegate (StringName param);
         internal static GetStringDelegate GetStringInternal;
-
-        [System.Security.SuppressUnmanagedCodeSecurity ()]
-        [MonoNativeFunctionWrapper]
-        internal delegate IntPtr GetStringiDelegate(StringName param, int i);
-        internal static GetStringiDelegate GetStringiInternal;
 
         [System.Security.SuppressUnmanagedCodeSecurity ()]
         [MonoNativeFunctionWrapper]
@@ -1159,7 +1153,6 @@ namespace MonoGame.OpenGL
             DisableVertexAttribArray = LoadFunction<DisableVertexAttribArrayDelegate> ("glDisableVertexAttribArray");
             GetIntegerv = LoadFunction<GetIntegerDelegate> ("glGetIntegerv");
             GetStringInternal = LoadFunction<GetStringDelegate> ("glGetString");
-            GetStringiInternal = LoadFunction<GetStringiDelegate> ("glGetStringi");
             ClearDepth = LoadFunction<ClearDepthDelegate> ("glClearDepth");
             if (ClearDepth == null)
                 ClearDepth = LoadFunction<ClearDepthDelegate> ("glClearDepthf");
@@ -1299,9 +1292,7 @@ namespace MonoGame.OpenGL
             }
 #endif
             if (BoundApi == RenderApi.ES) {
-                InvalidateFramebuffer = LoadFunction<InvalidateFramebufferDelegate> ("glInvalidateFramebuffer");
-                if (InvalidateFramebuffer == null)
-                    InvalidateFramebuffer = LoadFunction<InvalidateFramebufferDelegate> ("glDiscardFramebufferEXT");
+                InvalidateFramebuffer = LoadFunction<InvalidateFramebufferDelegate> ("glDiscardFramebufferEXT");
             }
 
             LoadExtensions ();
@@ -1322,22 +1313,10 @@ namespace MonoGame.OpenGL
 
         internal static void LoadExtensions()
         {
-            if (GetStringiInternal != null)
-            {
-                int numExtensions = 0;
-                GL.GetInteger(GetPName.NumExtensions, out numExtensions);
-                for (int i = 0; i < numExtensions; ++i)
-                {
-                    Extensions.Add(GL.GetStringi(StringName.Extensions, i));
-                }
-            }
-            else
-            {
-                string extstring = GL.GetString(StringName.Extensions);
-                var error = GL.GetError();
-                if (!string.IsNullOrEmpty(extstring) && error == ErrorCode.NoError)
-                    Extensions.AddRange(extstring.Split(' '));
-            }
+            string extstring = GL.GetString(StringName.Extensions);
+            var error = GL.GetError();
+            if (!string.IsNullOrEmpty(extstring) && error == ErrorCode.NoError)
+                Extensions.AddRange(extstring.Split(' '));
 
             LogExtensions();
             // now load Extensions :)
@@ -1424,11 +1403,6 @@ namespace MonoGame.OpenGL
         internal unsafe static string GetString (StringName name)
         {
             return Marshal.PtrToStringAnsi (GetStringInternal (name));
-        }
-
-        internal unsafe static string GetStringi(StringName name, int i)
-        {
-            return Marshal.PtrToStringAnsi(GetStringiInternal(name, i));
         }
 
         protected static IntPtr MarshalStringArrayToPtr (string[] strings)
