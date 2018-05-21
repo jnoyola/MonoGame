@@ -1,4 +1,4 @@
-$Platforms = @("DesktopGL", "Android", "iOS")
+$Platforms = @("DesktopGL", "Android", "iOS", "Content.Pipeline.Windows")
 $Version = "1.0.0.0-jnoyola"
 $Configuration = "Release"
 $Bin = "..\MonoGame.Framework\bin"
