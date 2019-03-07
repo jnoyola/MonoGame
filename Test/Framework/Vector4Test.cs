@@ -12,7 +12,7 @@ namespace MonoGame.Tests.Framework
         {
             var converter = TypeDescriptor.GetConverter(typeof(Vector4));
             CultureInfo invariantCulture = CultureInfo.InvariantCulture;
-            
+
             Assert.AreEqual(new Vector4(32, 64, 128, 255), converter.ConvertFromString(null, invariantCulture, "32, 64, 128, 255"));
             Assert.AreEqual(new Vector4(0.5f, 2.75f, 4.125f, 8.0625f), converter.ConvertFromString(null, invariantCulture, "0.5, 2.75, 4.125, 8.0625"));
             Assert.AreEqual(new Vector4(1024.5f, 2048.75f, 4096.125f, 8192.0625f), converter.ConvertFromString(null, invariantCulture, "1024.5, 2048.75, 4096.125, 8192.0625"));
@@ -156,16 +156,77 @@ namespace MonoGame.Tests.Framework
             Assert.AreNotEqual(ya.GetHashCode(), yb.GetHashCode(), "Different properties should change hash.");
             Assert.AreNotEqual(za.GetHashCode(), zb.GetHashCode(), "Different properties should change hash.");
             Assert.AreNotEqual(wa.GetHashCode(), wb.GetHashCode(), "Different properties should change hash.");
+#if !XNA
             Assert.AreNotEqual(xa.GetHashCode(), ya.GetHashCode(), "Identical values on different properties should have different hashes.");
             Assert.AreNotEqual(xb.GetHashCode(), yb.GetHashCode(), "Identical values on different properties should have different hashes.");
             Assert.AreNotEqual(xb.GetHashCode(), zb.GetHashCode(), "Identical values on different properties should have different hashes.");
             Assert.AreNotEqual(yb.GetHashCode(), zb.GetHashCode(), "Identical values on different properties should have different hashes.");
             Assert.AreNotEqual(xb.GetHashCode(), wb.GetHashCode(), "Identical values on different properties should have different hashes.");
             Assert.AreNotEqual(yb.GetHashCode(), wb.GetHashCode(), "Identical values on different properties should have different hashes.");
+#endif
             Assert.AreNotEqual(xa.GetHashCode(), yb.GetHashCode());
             Assert.AreNotEqual(ya.GetHashCode(), xb.GetHashCode());
             Assert.AreNotEqual(xa.GetHashCode(), zb.GetHashCode());
             Assert.AreNotEqual(xa.GetHashCode(), wb.GetHashCode());
         }
+
+#if !XNA
+        [Test]
+        public void Deconstruct()
+        {
+            Vector4 vector4 = new Vector4(float.MinValue, float.MaxValue, float.MinValue, float.MaxValue);
+
+            float x, y, z, w;
+
+            vector4.Deconstruct(out x, out y, out z, out w);
+
+            Assert.AreEqual(x, vector4.X);
+            Assert.AreEqual(y, vector4.Y);
+            Assert.AreEqual(z, vector4.Z);
+            Assert.AreEqual(w, vector4.W);
+        }
+
+        [Test]
+        public void Round()
+        {
+            Vector4 vector4 = new Vector4(0.0f, 0.4f, 0.6f, 1.0f);
+
+            // CEILING
+
+            Vector4 ceilMember = vector4;
+            ceilMember.Ceiling();
+
+            Vector4 ceilResult;
+            Vector4.Ceiling(ref vector4, out ceilResult);
+
+            Assert.AreEqual(new Vector4(0.0f, 1.0f, 1.0f, 1.0f), ceilMember);
+            Assert.AreEqual(new Vector4(0.0f, 1.0f, 1.0f, 1.0f), Vector4.Ceiling(vector4));
+            Assert.AreEqual(new Vector4(0.0f, 1.0f, 1.0f, 1.0f), ceilResult);
+
+            // FLOOR
+
+            Vector4 floorMember = vector4;
+            floorMember.Floor();
+
+            Vector4 floorResult;
+            Vector4.Floor(ref vector4, out floorResult);
+
+            Assert.AreEqual(new Vector4(0.0f, 0.0f, 0.0f, 1.0f), floorMember);
+            Assert.AreEqual(new Vector4(0.0f, 0.0f, 0.0f, 1.0f), Vector4.Floor(vector4));
+            Assert.AreEqual(new Vector4(0.0f, 0.0f, 0.0f, 1.0f), floorResult);
+
+            // ROUND
+
+            Vector4 roundMember = vector4;
+            roundMember.Round();
+
+            Vector4 roundResult;
+            Vector4.Round(ref vector4, out roundResult);
+
+            Assert.AreEqual(new Vector4(0.0f, 0.0f, 1.0f, 1.0f), roundMember);
+            Assert.AreEqual(new Vector4(0.0f, 0.0f, 1.0f, 1.0f), Vector4.Round(vector4));
+            Assert.AreEqual(new Vector4(0.0f, 0.0f, 1.0f, 1.0f), roundResult);
+        }
+#endif
     }
 }
