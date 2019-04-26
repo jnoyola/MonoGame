@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
-    <id>MonoGame.Framework.iOS</id>
+    <id>HollowGames.Framework.iOS</id>
     <version>0.0.0.0</version>
-    <title>MonoGame.Framework.iOS</title>
+    <title>HollowGames.Framework.iOS</title>
     <authors>MonoGame Team</authors>
     <owners>MonoGame Team</owners>
     <licenseUrl>https://github.com/mono/MonoGame/blob/develop/LICENSE.txt#L2</licenseUrl>
@@ -18,7 +18,7 @@ This package provides you with MonoGame Framework that works on iOS.</descriptio
     <language>en-US</language>
   </metadata>
   <files>
-    <file src="..\..\NuGetPackages\build\iOS\MonoGame.Framework.iOS.targets" target="build\MonoGame.Framework.iOS.targets" />
+    <file src="..\..\NuGetPackages\build\iOS\MonoGame.Framework.iOS.targets" target="build\HollowGames.Framework.iOS.targets" />
     
     <!-- C# Assemblies -->
     <file src="iOS\iPhoneSimulator\Release\MonoGame.Framework.dll" target="lib\XamariniOS\MonoGame.Framework.dll" />

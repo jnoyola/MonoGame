@@ -2,9 +2,9 @@
 <package 
     xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
-        <id>MonoGame.Framework.DX</id>
+        <id>HollowGames.Framework.DX</id>
         <version>0.0.0.0</version>
-        <title>MonoGame.Framework.DX</title>
+        <title>HollowGames.Framework.DX</title>
         <authors>MonoGame Team</authors>
         <owners>MonoGame Team</owners>
         <licenseUrl>https://github.com/mono/MonoGame/blob/develop/LICENSE.txt</licenseUrl>
@@ -51,14 +51,14 @@ This package also includes the Portable version of MonoGame for use in Bait and 
     </metadata>
     <files>
         <!-- Windows UWP -->
-        <file src="..\..\NuGetPackages\build\WindowsUniversal\MonoGame.Framework.WindowsUniversal.targets" target="build\uap10.0\MonoGame.Framework.WindowsUniversal.targets" />
+        <file src="..\..\NuGetPackages\build\WindowsUniversal\MonoGame.Framework.WindowsUniversal.targets" target="build\uap10.0\HollowGames.Framework.WindowsUniversal.targets" />
         <file src="WindowsUniversal\AnyCPU\Release\Themes\generic.xbf" target="lib\uap10.0\MonoGame.Framework\Themes\generic.xbf" />
         <file src="WindowsUniversal\AnyCPU\Release\MonoGame.Framework.dll" target="lib\uap10.0\MonoGame.Framework.dll" />
         <file src="WindowsUniversal\AnyCPU\Release\MonoGame.Framework.pri" target="lib\uap10.0\MonoGame.Framework.pri" />
         <file src="WindowsUniversal\AnyCPU\Release\MonoGame.Framework.xml" target="lib\uap10.0\MonoGame.Framework.xml" />
         <file src="WindowsUniversal\AnyCPU\Release\MonoGame.Framework.xr.xml" target="lib\uap10.0\MonoGame.Framework/MonoGame.Framework.xr.xml" />
         <!-- Windows Desktop -->
-        <file src="..\..\NuGetPackages\build\WindowsDX\MonoGame.Framework.WindowsDX.targets" target="build\net45\MonoGame.Framework.WindowsDX.targets" />
+        <file src="..\..\NuGetPackages\build\WindowsDX\MonoGame.Framework.WindowsDX.targets" target="build\net45\HollowGames.Framework.WindowsDX.targets" />
         <file src="Windows\AnyCPU\Release\MonoGame.Framework.dll" target="lib\net45\MonoGame.Framework.dll" />
         <file src="Windows\AnyCPU\Release\MonoGame.Framework.xml" target="lib\net45\MonoGame.Framework.xml" />
         <!-- Portable Assemblies -->

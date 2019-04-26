@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
-    <id>MonoGame.Framework.MacOS</id>
+    <id>HollowGames.Framework.MacOS</id>
     <version>0.0.0.0</version>
-    <title>MonoGame.Framework.MacOS</title>
+    <title>HollowGames.Framework.MacOS</title>
     <authors>MonoGame Team</authors>
     <owners>MonoGame Team</owners>
     <licenseUrl>https://github.com/mono/MonoGame/blob/develop/LICENSE.txt</licenseUrl>
@@ -18,7 +18,7 @@ This package provides you with MonoGame Framework that uses OpenGL for rendering
     <language>en-US</language>
   </metadata>
   <files>
-    <file src="..\..\NuGetPackages\build\MacOS\MonoGame.Framework.MacOS.targets" target="build\MonoGame.Framework.MacOS.targets" />
+    <file src="..\..\NuGetPackages\build\MacOS\MonoGame.Framework.MacOS.targets" target="build\HollowGames.Framework.MacOS.targets" />
     
     <!-- C# Assemblies -->
     <file src="MacOS\AnyCPU\Release\MonoGame.Framework.dll" target="lib\net40\MonoGame.Framework.dll" />

@@ -1,0 +1,6 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MonoGameContentBuilderExe Condition="'$(MonoGameContentBuilderExe)' == ''">$(MSBuildThisFileDirectory)..\tools\Pipeline\MGCB.exe</MonoGameContentBuilderExe>
+    <MonoGamePipelineExe Condition="'$(MonoGamePipelineExe)' == ''">$(MSBuildThisFileDirectory)..\tools\Pipeline\Pipeline.exe</MonoGamePipelineExe>
+  </PropertyGroup>
+</Project>

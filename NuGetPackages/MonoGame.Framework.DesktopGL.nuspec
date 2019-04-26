@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
-    <id>MonoGame.Framework.DesktopGL</id>
+    <id>HollowGames.Framework.DesktopGL</id>
     <version>0.0.0.0</version>
-    <title>MonoGame.Framework.DesktopGL</title>
+    <title>HollowGames.Framework.DesktopGL</title>
     <authors>MonoGame Team</authors>
     <owners>MonoGame Team</owners>
     <licenseUrl>https://github.com/mono/MonoGame/blob/develop/LICENSE.txt</licenseUrl>
@@ -18,7 +18,7 @@ This package provides you with MonoGame Framework that uses OpenGL for rendering
     <language>en-US</language>
   </metadata>
   <files>
-    <file src="..\..\NuGetPackages\build\DesktopGL\MonoGame.Framework.DesktopGL.targets" target="build\MonoGame.Framework.DesktopGL.targets" />
+    <file src="..\..\NuGetPackages\build\DesktopGL\MonoGame.Framework.DesktopGL.targets" target="build\HollowGames.Framework.DesktopGL.targets" />
     
     <!-- C# Assemblies -->
     <file src="WindowsGL\AnyCPU\Release\MonoGame.Framework.dll" target="lib\net45\MonoGame.Framework.dll" />

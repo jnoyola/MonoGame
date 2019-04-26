@@ -4,7 +4,7 @@
   file 'LICENSE.txt', which is part of this source code package.
 -->
 
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" InitialTargets="MonoGamePipeline">
   <UsingTask TaskName="MonoGame.Build.Tasks.CollectContentReferences" AssemblyFile="MonoGame.Build.Tasks.dll" />
   <!-- Add MonoGameContentReference to item type selection in Visual Studio -->
   <ItemGroup>
@@ -101,6 +101,43 @@
       <Output TaskParameter="Include" ItemName="BundleResource" Condition="'$(MonoGamePlatform)' == 'MacOSX' Or '$(MonoGamePlatform)' == 'iOS'" />
       <Output TaskParameter="Include" ItemName="AndroidAsset" Condition="'$(MonoGamePlatform)' == 'Android'" />
     </CreateItem>
+  </Target>
+
+  <UsingTask TaskName="ExecSingleAsync" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll" >
+    <ParameterGroup>
+      <FilePath ParameterType="System.String" Required="true" />
+      <Arguments ParameterType="System.String" />
+    </ParameterGroup>
+    <Task>
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+          string name = System.IO.Path.GetFileNameWithoutExtension(FilePath);
+          if (System.Diagnostics.Process.GetProcessesByName(name).Length == 0)
+          {
+            System.Diagnostics.ProcessStartInfo processStartInfo = new System.Diagnostics.ProcessStartInfo(FilePath, Arguments);
+            processStartInfo.UseShellExecute = true;
+            System.Diagnostics.Process.Start(processStartInfo);
+          }
+        ]]>
+      </Code>
+    </Task>
+  </UsingTask>
+
+  <Target Name="MonoGamePipeline">
+    <PropertyGroup>
+      <!-- El Capitan Support -->
+      <MonoExe Condition=" '$(OS)' != 'Windows_NT' And Exists ('/Library/Frameworks/Mono.framework/Versions/Current/bin/mono') ">/Library/Frameworks/Mono.framework/Versions/Current/bin/mono</MonoExe>
+      <MonoExe Condition=" '$(OS)' != 'Windows_NT' And Exists ('/usr/local/bin/mono') ">/usr/local/bin/mono</MonoExe>
+      <MonoExe Condition=" '$(OS)' != 'Windows_NT' And Exists ('/usr/bin/mono') ">/usr/bin/mono</MonoExe>
+      <MonoExe Condition=" '$(OS)' != 'Windows_NT' And '$(MonoExe)' == '' ">mono</MonoExe>
+      <MonoGamePipelineExe Condition="'$(MonoGamePipelineExe)' == ''">$(MSBuildThisFileDirectory)Tools\Pipeline.exe</MonoGamePipelineExe>
+      <MonoGamePipelineArgs Condition="'$(MonoGamePipelineArgs)' == ''">$(MSBuildProjectDirectory)\Content.mgcb</MonoGamePipelineArgs>
+      <MonoGamePipelineArgs>&quot;$(MonoGamePipelineArgs)&quot;</MonoGamePipelineArgs>
+      <MonoGamePipelineArgs Condition=" '$(OS)' != 'Windows_NT' ">'&quot;$(MonoGamePipelineExe)&quot; $(MonoGamePipelineArgs)'</MonoGamePipelineArgs>
+      <MonoGamePipelineExe Condition=" '$(OS)' != 'Windows_NT' ">$(MonoExe)</MonoGamePipelineExe>
+    </PropertyGroup>
+
+    <ExecSingleAsync FilePath="$(MonoGamePipelineExe)" Arguments="$(MonoGamePipelineArgs)" />
   </Target>
 
 </Project>

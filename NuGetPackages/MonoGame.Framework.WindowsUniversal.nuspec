@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
-        <id>MonoGame.Framework.WindowsUniversal</id>
+        <id>HollowGames.Framework.WindowsUniversal</id>
         <version>0.0.0.0</version>
-        <title>MonoGame.Framework.WindowsUniversal</title>
+        <title>HollowGames.Framework.WindowsUniversal</title>
         <authors>MonoGame Team</authors>
         <owners>MonoGame Team</owners>
         <licenseUrl>https://github.com/mono/MonoGame/blob/develop/LICENSE.txt</licenseUrl>
@@ -29,7 +29,7 @@ This package provides you with MonoGame Framework that works on Windows 10, Wind
         </dependencies>
     </metadata>
     <files>
-        <file src="..\..\NuGetPackages\build\WindowsUniversal\MonoGame.Framework.WindowsUniversal.targets" target="build\MonoGame.Framework.WindowsUniversal.targets" />
+        <file src="..\..\NuGetPackages\build\WindowsUniversal\MonoGame.Framework.WindowsUniversal.targets" target="build\HollowGames.Framework.WindowsUniversal.targets" />
         <file src="WindowsUniversal\AnyCPU\Release\Themes\generic.xbf" target="lib\netcore\MonoGame.Framework\Themes/generic.xbf" />
         <file src="WindowsUniversal\AnyCPU\Release\MonoGame.Framework.dll" target="lib\netcore\MonoGame.Framework.dll" />
         <file src="WindowsUniversal\AnyCPU\Release\MonoGame.Framework.pri" target="lib\netcore\MonoGame.Framework.pri" />

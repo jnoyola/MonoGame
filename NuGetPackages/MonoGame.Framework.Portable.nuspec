@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
-    <id>MonoGame.Framework.Portable</id>
+    <id>HollowGames.Framework.Portable</id>
     <version>0.0.0.0</version>
-    <title>MonoGame.Framework.Portable</title>
+    <title>HollowGames.Framework.Portable</title>
     <authors>MonoGame Team</authors>
     <owners>MonoGame Team</owners>
     <licenseUrl>https://github.com/mono/MonoGame/blob/develop/LICENSE.txt</licenseUrl>

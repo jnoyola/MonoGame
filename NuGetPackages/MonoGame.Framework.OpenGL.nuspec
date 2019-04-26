@@ -2,9 +2,9 @@
 <package 
     xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
     <metadata>
-        <id>MonoGame.Framework.OpenGL</id>
+        <id>HollowGames.Framework.OpenGL</id>
         <version>0.0.0.0</version>
-        <title>MonoGame.Framework.OpenGL</title>
+        <title>HollowGames.Framework.OpenGL</title>
         <authors>MonoGame Team</authors>
         <owners>MonoGame Team</owners>
         <licenseUrl>https://github.com/mono/MonoGame/blob/develop/LICENSE.txt#L2</licenseUrl>
@@ -20,22 +20,22 @@ This package provides you with MonoGame Framework that works on all OpenGL based
     </metadata>
     <files>
         <!-- Android -->
-        <file src="..\..\NuGetPackages\build\Android\MonoGame.Framework.Android.targets" target="build\MonoAndroid\MonoGame.Framework.Android.targets" />
+        <file src="..\..\NuGetPackages\build\Android\MonoGame.Framework.Android.targets" target="build\MonoAndroid\HollowGames.Framework.Android.targets" />
         <file src="Android\AnyCPU\Release\MonoGame.Framework.dll" target="lib\MonoAndroid\MonoGame.Framework.dll" />
         <file src="Android\AnyCPU\Release\MonoGame.Framework.xml" target="lib\MonoAndroid\MonoGame.Framework.xml" />
         <!-- iOS -->
-        <file src="..\..\NuGetPackages\build\iOS\MonoGame.Framework.iOS.targets" target="build\XamariniOS\MonoGame.Framework.iOS.targets" />
+        <file src="..\..\NuGetPackages\build\iOS\MonoGame.Framework.iOS.targets" target="build\XamariniOS\HollowGames.Framework.iOS.targets" />
         <file src="iOS\iPhoneSimulator\Release\MonoGame.Framework.dll" target="lib\XamariniOS\MonoGame.Framework.dll" />
         <file src="iOS\iPhoneSimulator\Release\MonoGame.Framework.xml" target="lib\XamariniOS\MonoGame.Framework.xml" />
         <!-- MacOS -->
-        <file src="..\..\NuGetPackages\build\MacOS\MonoGame.Framework.MacOS.targets" target="MonoMac\MonoMac\MonoGame.Framework.MacOS.targets" />
+        <file src="..\..\NuGetPackages\build\MacOS\MonoGame.Framework.MacOS.targets" target="MonoMac\MonoMac\HollowGames.Framework.MacOS.targets" />
         <file src="MacOS\AnyCPU\Release\MonoGame.Framework.dll" target="lib\MonoMac\MonoGame.Framework.dll" />
         <file src="MacOS\AnyCPU\Release\MonoGame.Framework.xml" target="lib\MonoMac\MonoGame.Framework.xml" />
-        <file src="..\..\NuGetPackages\build\MacOS\MonoGame.Framework.MacOS.targets" target="build\XamarinMac\MonoGame.Framework.MacOS.targets" />
+        <file src="..\..\NuGetPackages\build\MacOS\MonoGame.Framework.MacOS.targets" target="build\XamarinMac\HollowGames.Framework.MacOS.targets" />
         <file src="MacOS\AnyCPU\Release\MonoGame.Framework.dll" target="lib\XamarinMac\MonoGame.Framework.dll" />
         <file src="MacOS\AnyCPU\Release\MonoGame.Framework.xml" target="lib\XamarinMac\MonoGame.Framework.xml" />
         <!-- Cross-Platform GL -->
-        <file src="..\..\NuGetPackages\build\DesktopGL\MonoGame.Framework.DesktopGL.targets" target="build\net45\MonoGame.Framework.DesktopGL.targets" />
+        <file src="..\..\NuGetPackages\build\DesktopGL\MonoGame.Framework.DesktopGL.targets" target="build\net45\HollowGames.Framework.DesktopGL.targets" />
         <file src="WindowsGL\AnyCPU\Release\MonoGame.Framework.dll" target="lib\net45\MonoGame.Framework.dll" />
         <file src="WindowsGL\AnyCPU\Release\MonoGame.Framework.xml" target="lib\net45\MonoGame.Framework.xml" />
         <file src="WindowsGL\AnyCPU\Release\MonoGame.Framework.dll.config" target="build\native\MonoGame.Framework.dll.config" />

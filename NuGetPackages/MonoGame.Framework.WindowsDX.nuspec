@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
-    <id>MonoGame.Framework.WindowsDX</id>
+    <id>HollowGames.Framework.WindowsDX</id>
     <version>0.0.0.0</version>
-    <title>MonoGame.Framework.WindowsDX</title>
+    <title>HollowGames.Framework.WindowsDX</title>
     <authors>MonoGame Team</authors>
     <owners>MonoGame Team</owners>
     <licenseUrl>https://github.com/mono/MonoGame/blob/develop/LICENSE.txt</licenseUrl>
@@ -30,7 +30,7 @@ This package provides you with MonoGame Framework that uses DirectX for renderin
     </dependencies>
   </metadata>
   <files>
-    <file src="..\..\NuGetPackages\build\WindowsDX\MonoGame.Framework.WindowsDX.targets" target="build\MonoGame.Framework.WindowsDX.targets" />
+    <file src="..\..\NuGetPackages\build\WindowsDX\MonoGame.Framework.WindowsDX.targets" target="build\HollowGames.Framework.WindowsDX.targets" />
     
     <!-- C# Assemblies -->
     <file src="Windows\AnyCPU\Release\MonoGame.Framework.dll" target="lib\net45\MonoGame.Framework.dll" />

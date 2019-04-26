@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+  <metadata>
+    <id>HollowGames.Content.Builder</id>
+    <version>$version$</version>
+    <title>HollowGames.Content.Builder</title>
+    <authors>MonoGame Team</authors>
+    <owners>MonoGame Team</owners>
+    <licenseUrl>https://github.com/mono/MonoGame/blob/develop/LICENSE.txt</licenseUrl>
+    <projectUrl>http://monogame.net/</projectUrl>
+    <iconUrl>https://pbs.twimg.com/profile_images/487954549441691649/O3KsHAsb_400x400.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>MonoGame is an open source implementation of the Microsoft XNA 4.x Framework. The goal is to make it easy for XNA developers to create cross-platform games with extremely high code reuse.
+
+This package provides build of MonoGame Content Builder tasks.</description>
+    <summary>This package provides build of MonoGame Content Builder tasks.</summary>
+    <language>en-US</language>
+  </metadata>
+  <files>
+    <!-- Build -->
+    <file src="..\..\MonoGame.Framework.Content.Pipeline\MonoGame.Content.Builder.props" target="build\HollowGames.Content.Builder.props" />
+    <file src="..\..\MonoGame.Framework.Content.Pipeline\MonoGame.Content.Builder.targets" target="build\HollowGames.Content.Builder.targets" />
+    <file src="..\..\Tools\MonoGame.Build.Tasks\bin\Windows\AnyCPU\Release\*" target="build\" />
+
+    <!-- Tools -->
+    <file src="..\..\Tools\Pipeline\bin\Windows\AnyCPU\Release\**\*" target="tools\Pipeline\" />
+  </files>
+</package>
