@@ -3,7 +3,7 @@ $Packages = @(
 "Framework.Android",
 "Framework.iOS",
 "Framework.Content.Pipeline.Windows",
-"Content.Builder"
+"Content.Builder.Windows"
 )
 
 $Version = "3.7.1.11"
