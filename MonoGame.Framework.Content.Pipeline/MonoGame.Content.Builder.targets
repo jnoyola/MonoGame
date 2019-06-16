@@ -26,9 +26,9 @@
       <MonoGameContentBuilderExe Condition="'$(MonoGameContentBuilderExe)' == ''">$(MSBuildThisFileDirectory)Tools\MGCB.exe</MonoGameContentBuilderExe>
       <MonoGameContentBuilderCmd>&quot;$(MonoGameContentBuilderExe)&quot;</MonoGameContentBuilderCmd>
       <MonoGameContentBuilderCmd Condition=" '$(OS)' != 'Windows_NT' ">$(MonoExe) $(MonoGameContentBuilderCmd)</MonoGameContentBuilderCmd>
-      <MonoGamePipelineExe Condition="'$(MonoGamePipelineExe)' == ''">$(MSBuildThisFileDirectory)Tools\Pipeline.exe</MonoGamePipelineExe>
-      <MonoGamePipelineArgs Condition=" '$(OS)' != 'Windows_NT' ">&quot;$(MonoGamePipelineExe)&quot;</MonoGamePipelineArgs>
-      <MonoGamePipelineExe Condition=" '$(OS)' != 'Windows_NT' ">$(MonoExe)</MonoGamePipelineExe>
+      <MonoGameContentPipelineExe Condition="'$(MonoGameContentPipelineExe)' == ''">$(MSBuildThisFileDirectory)Tools\Pipeline.exe</MonoGameContentPipelineExe>
+      <MonoGameContentPipelineCmd>&quot;$(MonoGamePipelineExe)&quot;</MonoGameContentPipelineCmd>
+      <MonoGameContentPipelineCmd Condition=" '$(OS)' != 'Windows_NT' ">$(MonoExe) $(MonoGameContentPipelineCmd)</MonoGameContentPipelineCmd>
       <PlatformResourcePrefix Condition="'$(MonoGamePlatform)' == 'MacOSX'">$(MonoMacResourcePrefix)</PlatformResourcePrefix>
       <PlatformResourcePrefix Condition="'$(MonoGamePlatform)' == 'iOS'">$(IPhoneResourcePrefix)</PlatformResourcePrefix>
       <PlatformResourcePrefix Condition="'$(MonoGamePlatform)' == 'Android'">$(MonoAndroidAssetsPrefix)</PlatformResourcePrefix>
@@ -83,12 +83,6 @@
     </BuildDependsOn>
   </PropertyGroup>
 
-  <Target Name="OpenContentPipeline">
-    <ExecSingleAsync Condition=" '%(ContentReferences.FullPath)' != '' "
-                     FilePath="$(MonoGamePipelineExe)"
-                     Arguments="$(MonoGamePipelineArgs) &quot;%(ContentReferences.FullPath)&quot;" />
-  </Target>
-
   <Target Name="RunContentBuilder">
     <Exec Condition=" '%(ContentReferences.FullPath)' != '' "
           Command="$(MonoGameContentBuilderCmd) $(MonoGameMGCBAdditionalArguments) $(Header) /@:&quot;%(ContentReferences.FullPath)&quot; /outputDir:&quot;%(ContentReferences.ContentOutputDir)&quot; /intermediateDir:&quot;%(ContentReferences.ContentIntermediateOutputDir)&quot;"
@@ -99,7 +93,7 @@
     </CreateItem>
   </Target>
 
-  <Target Name="BuildContent" DependsOnTargets="Prepare;OpenContentPipeline;RunContentBuilder"
+  <Target Name="BuildContent" DependsOnTargets="Prepare;RunContentBuilder"
           Condition=" '@(MonoGameContentReference)' != '' "
           Outputs="%(ExtraContent.RecursiveDir)%(ExtraContent.Filename)%(ExtraContent.Extension)">
 
@@ -112,24 +106,51 @@
     </CreateItem>
   </Target>
 
-  <UsingTask TaskName="ExecSingleAsync" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll" >
-    <ParameterGroup>
-      <FilePath ParameterType="System.String" Required="true" />
-      <Arguments ParameterType="System.String" />
-    </ParameterGroup>
-    <Task>
-      <Code Type="Fragment" Language="cs">
-        <![CDATA[
-          string name = System.IO.Path.GetFileNameWithoutExtension(FilePath);
-          if (System.Diagnostics.Process.GetProcessesByName(name).Length == 0)
-          {
-            System.Diagnostics.ProcessStartInfo processStartInfo = new System.Diagnostics.ProcessStartInfo(FilePath, Arguments);
-            processStartInfo.UseShellExecute = true;
-            System.Diagnostics.Process.Start(processStartInfo);
-          }
-        ]]>
-      </Code>
-    </Task>
-  </UsingTask>
+  <Target Name="CreatePipelineShortcut"
+          DependsOnTargets="Prepare"
+          BeforeTargets="CollectPackageReferences;Restore"
+          Condition=" '@(MonoGameContentReference)' != '' ">
+
+    <ItemGroup>
+      <MonoGameContentPipelineCmd Condition=" '$(OS)' == 'Windows_NT' " Include="start &quot;&quot; $(MonoGameContentPipelineCmd) &quot;%(ContentReferences.FullPath)&quot;"/>
+      <MonoGameContentPipelineCmd Condition=" '$(OS)' != 'Windows_NT' " Include="$(MonoGameContentPipelineCmd) &quot;%(ContentReferences.FullPath)&quot; &amp;"/>
+    </ItemGroup>
+
+    <PropertyGroup>
+      <MonoGameContentPipelineScriptName>ContentPipeline</MonoGameContentPipelineScriptName>
+      <MonoGameContentPipelineScriptName Condition=" '$(OS)' == 'Windows_NT' ">$(MonoGameContentPipelineScriptName).bat</MonoGameContentPipelineScriptName>
+      <MonoGameContentPipelineScriptName Condition=" '$(OS)' != 'Windows_NT' ">$(MonoGameContentPipelineScriptName).sh</MonoGameContentPipelineScriptName>
+      <MonoGameContentPipelineScript Condition=" '$(OS)' == 'Windows_NT' ">
+        %40echo off
+        @(MonoGameContentPipelineCmd, '%0d')
+        echo.
+        echo   _     ___    _    ____ ___ _   _  ____
+        echo  ^| ^|   / _ \  / \  ^|  _ \_ _^| \ ^| ^|/ ___^|
+        echo  ^| ^|  ^| ^| ^| ^|/ _ \ ^| ^| ^| ^| ^|^|  \^| ^| ^|  _
+        echo  ^| ^|__^| ^|_^| / ___ \^| ^|_^| ^| ^|^| ^|\  ^| ^|_^| ^|
+        echo  ^|_____\___/_/   \_\____/___^|_^| \_^|\____^|
+        echo.
+        timeout 2
+      </MonoGameContentPipelineScript>
+      <MonoGameContentPipelineScript Condition=" '$(OS)' != 'Windows_NT' ">
+        #!/bin/bash
+        @(MonoGameContentPipelineCmd, '%0d')
+        echo ""
+        echo "  _     ___    _    ____ ___ _   _  ____ "
+        echo " | |   / _ \  / \  |  _ \_ _| \ | |/ ___|"
+        echo " | |  | | | |/ _ \ | | | | ||  \| | |  _ "
+        echo " | |__| |_| / ___ \| |_| | || |\  | |_| |"
+        echo " |_____\___/_/   \_\____/___|_| \_|\____|"
+        echo ""
+        sleep 2
+      </MonoGameContentPipelineScript>
+    </PropertyGroup>
+
+    <WriteLinesToFile
+            File="$(MSBuildProjectDirectory)\$(MonoGameContentPipelineScriptName)"
+            Lines="$(MonoGameContentPipelineScript)"
+            Overwrite="true"
+            Encoding="ASCII"/>
+  </Target>
 
 </Project>

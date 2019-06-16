@@ -1,0 +1,7 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PathTokenCount>$(MSBuildThisFileDirectory.Split($([System.IO.Path]::DirectorySeparatorChar)).length)</PathTokenCount>
+    <PathVersionTokenIndex>$([MSBuild]::Subtract($(PathTokenCount), 3))</PathVersionTokenIndex>
+    <PackageVersion>$(MSBuildThisFileDirectory.Split($([System.IO.Path]::DirectorySeparatorChar))[$(PathVersionTokenIndex)])</PackageVersion>
+  </PropertyGroup>
+</Project>

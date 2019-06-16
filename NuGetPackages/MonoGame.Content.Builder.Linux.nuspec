@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
-    <id>HollowGames.Content.Builder.Windows</id>
+    <id>HollowGames.Content.Builder.Linux</id>
     <version>$version$</version>
-    <title>HollowGames.Content.Builder.Windows</title>
+    <title>HollowGames.Content.Builder.Linux</title>
     <authors>MonoGame Team</authors>
     <owners>MonoGame Team</owners>
     <licenseUrl>https://github.com/mono/MonoGame/blob/develop/LICENSE.txt</licenseUrl>
@@ -18,11 +18,11 @@ This package provides build of MonoGame Content Builder tasks and Pipeline tool.
   </metadata>
   <files>
     <!-- Build -->
-    <file src="..\..\MonoGame.Framework.Content.Pipeline\MonoGame.Content.Builder.props" target="build\HollowGames.Content.Builder.Windows.props" />
-    <file src="..\..\MonoGame.Framework.Content.Pipeline\MonoGame.Content.Builder.targets" target="build\HollowGames.Content.Builder.Windows.targets" />
-    <file src="..\..\Tools\MonoGame.Build.Tasks\bin\Windows\AnyCPU\Release\*" target="build\" />
+    <file src="..\..\MonoGame.Framework.Content.Pipeline\MonoGame.Content.Builder.props" target="build\HollowGames.Content.Builder.Linux.props" />
+    <file src="..\..\MonoGame.Framework.Content.Pipeline\MonoGame.Content.Builder.targets" target="build\HollowGames.Content.Builder.Linux.targets" />
+    <file src="..\..\Tools\MonoGame.Build.Tasks\bin\Linux\AnyCPU\Release\*" target="build\" />
 
     <!-- Tools -->
-    <file src="..\..\Tools\Pipeline\bin\Windows\AnyCPU\Release\**\*" target="tools\Pipeline\" />
+    <file src="..\..\Tools\Pipeline\bin\Linux\AnyCPU\Release\**\*" target="tools\Pipeline\" />
   </files>
 </package>
