@@ -1,0 +1,33 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PathTokenCount>$(MSBuildThisFileDirectory.Split($([System.IO.Path]::DirectorySeparatorChar)).length)</PathTokenCount>
+    <PathPackageTokenIndex>$([MSBuild]::Subtract($(PathTokenCount), 4))</PathPackageTokenIndex>
+    <PathVersionTokenIndex>$([MSBuild]::Subtract($(PathTokenCount), 3))</PathVersionTokenIndex>
+    <PackageName>$(MSBuildThisFileDirectory.Split($([System.IO.Path]::DirectorySeparatorChar))[$(PathPackageTokenIndex)])</PackageName>
+    <PackageVersion>$(MSBuildThisFileDirectory.Split($([System.IO.Path]::DirectorySeparatorChar))[$(PathVersionTokenIndex)])</PackageVersion>
+  </PropertyGroup>
+
+  <Choose>
+    <When Condition=" '$(OS)' == 'Windows_NT' ">
+      <ItemGroup>
+        <PackageReference Include="$(PackageName).Windows" Version="$(PackageVersion)">
+          <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+      </ItemGroup>
+    </When>
+    <When Condition=" '$(OS)' == 'OSX' ">
+      <ItemGroup>
+        <PackageReference Include="$(PackageName).MacOS" Version="$(PackageVersion)">
+          <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <PackageReference Include="$(PackageName).Linux" Version="$(PackageVersion)">
+          <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+</Project>

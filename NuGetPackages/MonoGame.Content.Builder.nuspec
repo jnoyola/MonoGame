@@ -17,7 +17,6 @@ This package provides build of MonoGame Content Builder tasks and Pipeline tool.
     <language>en-US</language>
   </metadata>
   <files>
-    <file src="..\..\NuGetPackages\build\MonoGame.Content.Builder.props" target="build\HollowGames.Content.Builder.props" />
-    <file src="..\..\NuGetPackages\build\PackageVersion.props" target="build\PackageVersion.props" />
+    <file src="..\..\NuGetPackages\build\PackagePicker.props" target="build\HollowGames.Content.Builder.props" />
   </files>
 </package>

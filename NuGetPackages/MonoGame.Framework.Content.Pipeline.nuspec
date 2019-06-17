@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
-    <id>HollowGames.Framework.Content.Pipeline.Windows</id>
+    <id>HollowGames.Framework.Content.Pipeline</id>
     <version>$version$</version>
-    <title>HollowGames.Framework.Content.Pipeline.Windows</title>
+    <title>HollowGames.Framework.Content.Pipeline</title>
     <authors>MonoGame Team</authors>
     <owners>MonoGame Team</owners>
     <licenseUrl>https://github.com/mono/MonoGame/blob/develop/LICENSE.txt</licenseUrl>
@@ -14,17 +14,9 @@
 
 This package provides build of MonoGame Framework Content Pipeline.</description>
     <summary>This package provides build of MonoGame Framework Content Pipeline.</summary>
-    <copyright>Copyright © 2009-2017 The MonoGame Team</copyright>
     <language>en-US</language>
-    <references>
-      <reference file="MonoGame.Framework.Content.Pipeline.dll" />
-    </references>	
-    <dependencies>
-      <dependency id="HollowGames.Framework.Portable" version="$version$" />
-    </dependencies>
   </metadata>
   <files>
-    <file src="..\..\MonoGame.Framework.Content.Pipeline\bin\Windows\AnyCPU\Release\MonoGame.Framework.Content.Pipeline.dll" target="lib\net45\MonoGame.Framework.Content.Pipeline.dll" />
-    <file src="..\..\MonoGame.Framework.Content.Pipeline\bin\Windows\AnyCPU\Release\MonoGame.Framework.Content.Pipeline.xml" target="lib\net45\MonoGame.Framework.Content.Pipeline.xml" />
+    <file src="..\..\NuGetPackages\build\PackagePicker.props" target="build\HollowGames.Framework.Content.Pipeline.props" />
   </files>
 </package>

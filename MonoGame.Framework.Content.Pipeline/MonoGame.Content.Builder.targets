@@ -109,7 +109,7 @@
   <Target Name="CreatePipelineShortcut"
           DependsOnTargets="Prepare"
           BeforeTargets="CollectPackageReferences;Restore"
-          Condition=" '@(MonoGameContentReference)' != '' ">
+          Condition=" '@(MonoGameContentReference)' != '' AND '$(PipelineShortcut)' == 'true' ">
 
     <ItemGroup>
       <MonoGameContentPipelineCmd Condition=" '$(OS)' == 'Windows_NT' " Include="start &quot;&quot; $(MonoGameContentPipelineCmd) &quot;%(ContentReferences.FullPath)&quot;"/>
@@ -117,7 +117,7 @@
     </ItemGroup>
 
     <PropertyGroup>
-      <MonoGameContentPipelineScriptName>ContentPipeline</MonoGameContentPipelineScriptName>
+      <MonoGameContentPipelineScriptName>Pipeline</MonoGameContentPipelineScriptName>
       <MonoGameContentPipelineScriptName Condition=" '$(OS)' == 'Windows_NT' ">$(MonoGameContentPipelineScriptName).bat</MonoGameContentPipelineScriptName>
       <MonoGameContentPipelineScriptName Condition=" '$(OS)' != 'Windows_NT' ">$(MonoGameContentPipelineScriptName).sh</MonoGameContentPipelineScriptName>
       <MonoGameContentPipelineScript Condition=" '$(OS)' == 'Windows_NT' ">

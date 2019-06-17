@@ -20,7 +20,7 @@ This package provides bait-and-switch PCL build of MonoGame Framework Content Pi
       <reference file="MonoGame.Framework.Content.Pipeline.dll" />
     </references>	
     <dependencies>
-      <dependency id="MonoGame.Framework.Portable" version="$version$" />
+      <dependency id="HollowGames.Framework.Portable" version="$version$" />
     </dependencies>
   </metadata>
   <files>
