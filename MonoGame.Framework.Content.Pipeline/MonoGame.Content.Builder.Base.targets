@@ -1,24 +1,10 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-  <Choose>
-    <When Condition=" '$(OS)' == 'Windows_NT' ">
-      <PropertyGroup>
-        <PackagePlatform>Windows</PackagePlatform>
-      </PropertyGroup>
-    </When>
-    <When Condition=" '$(OS)' == 'OSX' ">
-      <PropertyGroup>
-        <PackagePlatform>MacOS</PackagePlatform>
-      </PropertyGroup>
-    </When>
-    <Otherwise>
-      <PropertyGroup>
-        <PackagePlatform>Linux</PackagePlatform>
-      </PropertyGroup>
-    </Otherwise>
-  </Choose>
-
   <PropertyGroup>
+    <PackagePlatform Condition=" '$(OS)' == 'Windows_NT' ">Windows</PackagePlatform>
+    <PackagePlatform Condition=" '$(OS)' == 'OSX' ">MacOS</PackagePlatform>
+    <PackagePlatform Condition=" '$(PackagePlatform)' == '' ">Linux</PackagePlatform>
+
     <PathTokenCount>$(MSBuildThisFileDirectory.Split($([System.IO.Path]::DirectorySeparatorChar)).length)</PathTokenCount>
     <PathPackageTokenIndex>$([MSBuild]::Subtract($(PathTokenCount), 4))</PathPackageTokenIndex>
     <PathVersionTokenIndex>$([MSBuild]::Subtract($(PathTokenCount), 3))</PathVersionTokenIndex>
