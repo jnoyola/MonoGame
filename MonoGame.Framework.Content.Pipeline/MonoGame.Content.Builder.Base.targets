@@ -29,9 +29,9 @@
     <PlatformResourcePrefix Condition=" '$(PlatformResourcePrefix)' != '' And !HasTrailingSlash('$(PlatformResourcePrefix)') ">$(PlatformResourcePrefix)\</PlatformResourcePrefix>
 
     <!-- NuGet -->
-    <NuGetExe>$(PkgNuGet_CommandLine)\tools\NuGet.exe</NuGetExe>
+    <NuGetExe>$(PkgNuGet_CommandLine)/tools/NuGet.exe</NuGetExe>
     <NuGetCmd>&quot;$(NuGetExe)&quot;</NuGetCmd>
-    <NuGetCmd Condition=" '$(OS)' != 'Windows_NT' ">$(MonoExe) $(NuGetCmd)</NuGetCmd>
+    <NuGetCmd Condition=" '$(MonoExe)' != '' ">$(MonoExe) $(NuGetCmd)</NuGetCmd>
 
     <!-- MGCB -->
     <MonoGameContentBuilderExe Condition="'$(MonoGameContentBuilderExe)' == ''">$(PlatformPackageDir)tools/Pipeline/MGCB.exe</MonoGameContentBuilderExe>
