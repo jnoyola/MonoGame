@@ -18,7 +18,6 @@ This package provides build of MonoGame Content Builder tasks and Pipeline tool.
   </metadata>
   <files>
     <!-- Build -->
-    <file src="..\..\MonoGame.Framework.Content.Pipeline\MonoGame.Content.Builder.props" target="build\HollowGames.Content.Builder.Windows.props" />
     <file src="..\..\MonoGame.Framework.Content.Pipeline\MonoGame.Content.Builder.targets" target="build\HollowGames.Content.Builder.Windows.targets" />
     <file src="..\..\Tools\MonoGame.Build.Tasks\bin\Windows\AnyCPU\Release\*" target="build\" />
 

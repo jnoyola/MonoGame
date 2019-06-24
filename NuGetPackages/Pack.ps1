@@ -2,8 +2,6 @@ $Packages = @(
 "Framework.DesktopGL",
 "Framework.Android",
 "Framework.iOS",
-"Framework.Content.Pipeline",
-"Framework.Content.Pipeline.Windows",
 "Content.Builder",
 "Content.Builder.Windows"
 )

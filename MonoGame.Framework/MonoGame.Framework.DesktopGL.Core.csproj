@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -15,7 +15,7 @@
     <PackageTags>monogame;.net core;core;.net standard;standard;desktopgl</PackageTags>
     <Version>3.7.0.8</Version>
     <Authors>cra0zy</Authors>
-    <PackageId>MonoGame.Framework.DesktopGL.Core</PackageId>
+    <PackageId>HollowGames.Framework.DesktopGL.NetStd</PackageId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\DesktopGL\AnyCPU\Debug</OutputPath>
@@ -61,7 +61,6 @@
     <Compile Include="GameRunBehavior.cs" />
     <Compile Include="GameServiceContainer.cs" />
     <Compile Include="GameTime.cs" />
-    <Compile Include="GameUpdateRequiredException.cs" />
     <Compile Include="GameWindow.cs" />
     <Compile Include="IDrawable.cs" />
     <Compile Include="IGameComponent.cs" />
@@ -565,6 +564,7 @@
     </Compile>
     <Compile Include="Utilities\Hash.cs" />
     <Compile Include="Utilities\FileHelpers.cs" />
+    <Compile Include="Utilities\InteropHelpers.cs" />
     <Compile Include="Utilities\ReflectionHelpers.cs" />
     <Compile Include="Utilities\ReflectionHelpers.Legacy.cs">
       <Platforms>Angle,Linux,MacOS,Windows,WindowsGL,Web</Platforms>
@@ -724,7 +724,7 @@
     <Content Include="..\ThirdParty\Dependencies\openal-soft\MacOS\Universal\libopenal.1.dylib" PackagePath="runtimes\osx\native" Visible="false" />
     <Content Include="..\ThirdParty\Dependencies\SDL\MacOS\Universal\libSDL2-2.0.0.dylib" PackagePath="runtimes\osx\native" Visible="false" />
 
-    <Content Include="MonoGame.Framework.DesktopGL.Core.targets" PackagePath="build" />
+    <Content Include="MonoGame.Framework.DesktopGL.Core.targets" PackagePath="build\HollowGames.Framework.DesktopGL.NetStd.targets" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MonoGame.bmp">

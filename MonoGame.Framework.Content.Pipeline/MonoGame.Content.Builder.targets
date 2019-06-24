@@ -23,10 +23,10 @@
       <MonoExe Condition=" '$(OS)' != 'Windows_NT' And Exists ('/usr/local/bin/mono') ">/usr/local/bin/mono</MonoExe>
       <MonoExe Condition=" '$(OS)' != 'Windows_NT' And Exists ('/usr/bin/mono') ">/usr/bin/mono</MonoExe>
       <MonoExe Condition=" '$(OS)' != 'Windows_NT' And '$(MonoExe)' == '' ">mono</MonoExe>
-      <MonoGameContentBuilderExe Condition="'$(MonoGameContentBuilderExe)' == ''">$(MSBuildThisFileDirectory)Tools\MGCB.exe</MonoGameContentBuilderExe>
+      <MonoGameContentBuilderExe Condition="'$(MonoGameContentBuilderExe)' == ''">$(MSBuildThisFileDirectory)..\tools\Pipeline\MGCB.exe</MonoGameContentBuilderExe>
       <MonoGameContentBuilderCmd>&quot;$(MonoGameContentBuilderExe)&quot;</MonoGameContentBuilderCmd>
       <MonoGameContentBuilderCmd Condition=" '$(OS)' != 'Windows_NT' ">$(MonoExe) $(MonoGameContentBuilderCmd)</MonoGameContentBuilderCmd>
-      <MonoGameContentPipelineExe Condition="'$(MonoGameContentPipelineExe)' == ''">$(MSBuildThisFileDirectory)Tools\Pipeline.exe</MonoGameContentPipelineExe>
+      <MonoGameContentPipelineExe Condition="'$(MonoGameContentPipelineExe)' == ''">$(MSBuildThisFileDirectory)..\tools\Pipeline\Pipeline.exe</MonoGameContentPipelineExe>
       <MonoGameContentPipelineCmd>&quot;$(MonoGamePipelineExe)&quot;</MonoGameContentPipelineCmd>
       <MonoGameContentPipelineCmd Condition=" '$(OS)' != 'Windows_NT' ">$(MonoExe) $(MonoGameContentPipelineCmd)</MonoGameContentPipelineCmd>
       <PlatformResourcePrefix Condition="'$(MonoGamePlatform)' == 'MacOSX'">$(MonoMacResourcePrefix)</PlatformResourcePrefix>
