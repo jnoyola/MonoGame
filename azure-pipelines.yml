@@ -13,5 +13,5 @@ name: $(versionMonoGame).$(versionRevision)
 steps:
 - task: PowerShell@2
   inputs:
-    filePath: './build.ps1'
+    filePath: 'build.ps1'
     arguments: '-ScriptArgs "-build-version=$(versionMonoGame).$(versionRevision)"'
