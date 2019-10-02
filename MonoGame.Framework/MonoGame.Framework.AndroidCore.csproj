@@ -9,7 +9,7 @@
 
 This package provides you with MonoGame Framework that works on Android.</Description>
     <PackageTags>monogame;.net core;core;.net standard;standard;android</PackageTags>
-    <PackageId>MonoGame.Framework.Android</PackageId>
+    <PackageId>HollowGames.Framework.Android</PackageId>
   </PropertyGroup>
 
   <ItemGroup>

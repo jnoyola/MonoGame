@@ -11,7 +11,7 @@
 
 This package provides you with MonoGame Framework that works on Windows 10, Windows Phone 10 and Xbox One using UWP(Universal Windows Platform).</Description>
     <PackageTags>monogame;.net core;core;.net standard;standard;uwp</PackageTags>
-    <PackageId>MonoGame.Framework.WindowsUniversal</PackageId>
+    <PackageId>HollowGames.Framework.WindowsUniversal</PackageId>
 
     <SharpDXVersion>4.0.1</SharpDXVersion>
   </PropertyGroup>
