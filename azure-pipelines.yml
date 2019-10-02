@@ -18,17 +18,17 @@ jobs:
     displayName: Build DesktopGL
     inputs:
       filePath: 'build.ps1'
-      arguments: '-ScriptArgs "-build-version=$(versionMonoGame).$(versionRevision) -build-target=BuildDesktopGL"'
+      arguments: '-ScriptArgs @("-build-version=$(versionMonoGame).$(versionRevision)", "-build-target=BuildDesktopGL")'
   - task: PowerShell@2
     displayName: Build WindowsDX
     inputs:
       filePath: 'build.ps1'
-      arguments: '-ScriptArgs "-build-version=$(versionMonoGame).$(versionRevision) -build-target=BuildWindowsDX"'
+      arguments: '-ScriptArgs @("-build-version=$(versionMonoGame).$(versionRevision)", "-build-target=BuildWindowsDX")'
   - task: PowerShell@2
     displayName: Build WindowsUniversal
     inputs:
       filePath: 'build.ps1'
-      arguments: '-ScriptArgs "-build-version=$(versionMonoGame).$(versionRevision) -build-target=BuildUWP"'
+      arguments: '-ScriptArgs @("-build-version=$(versionMonoGame).$(versionRevision)", "-build-target=BuildWindowsUWP")'
   - task: PublishPipelineArtifact@1
     inputs:
       targetPath: 'bin/DesktopGL/Release/*.nupkg'
