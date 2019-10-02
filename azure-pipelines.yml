@@ -7,7 +7,7 @@ pool:
 variables:
   versionMonoGame: '3.7.1'
   versionRevision: $[counter(variables['versionMonoGame'], 0)]
-  version: $(versionMonoGame).$(versionRevision)
+  version: $[variables['versionMonoGame']]$[variables['versionRevision']]
 
 name: $(version)
 
