@@ -10,8 +10,25 @@ variables:
 
 name: $(versionMonoGame).$(versionRevision)
 
-steps:
-- task: PowerShell@2
-  inputs:
-    filePath: 'build.ps1'
-    arguments: '-ScriptArgs "-build-version=$(versionMonoGame).$(versionRevision)"'
+jobs:
+- job:
+  displayName: Build Windows
+  steps:
+  - task: PowerShell@2
+    displayName: Build DesktopGL
+    inputs:
+      filePath: 'build.ps1'
+      arguments: '-ScriptArgs "-build-version=$(versionMonoGame).$(versionRevision) -build-target=BuildDesktopGL"'
+  - task: PowerShell@2
+    displayName: Build WindowsDX
+    inputs:
+      filePath: 'build.ps1'
+      arguments: '-ScriptArgs "-build-version=$(versionMonoGame).$(versionRevision) -build-target=BuildWindowsDX"'
+  - task: PowerShell@2
+    displayName: Build WindowsUniversal
+    inputs:
+      filePath: 'build.ps1'
+      arguments: '-ScriptArgs "-build-version=$(versionMonoGame).$(versionRevision) -build-target=BuildUWP"'
+  - task: PublishPipelineArtifact@1
+    inputs:
+      targetPath: 'bin/DesktopGL/Release/*.nupkg'
