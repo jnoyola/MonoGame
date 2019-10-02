@@ -10,25 +10,38 @@ variables:
 
 name: $(versionMonoGame).$(versionRevision)
 
-jobs:
-- job:
+stages:
+
+- stage:
   displayName: Build Windows
-  steps:
-  - task: PowerShell@2
+  jobs:
+
+  - job:
     displayName: Build DesktopGL
-    inputs:
-      filePath: 'build.ps1'
-      arguments: '-ScriptArgs @("-build-version=$(versionMonoGame).$(versionRevision)", "-build-target=BuildDesktopGL")'
-  - task: PowerShell@2
+    steps:
+    - task: PowerShell@2
+      displayName: Cake Build DesktopGL
+      inputs:
+        filePath: 'build.ps1'
+        arguments: '-ScriptArgs @("-build-version=$(versionMonoGame).$(versionRevision)", "-build-target=BuildDesktopGL")'
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: 'bin/DesktopGL/Release/*.nupkg'
+
+  - job:
     displayName: Build WindowsDX
-    inputs:
-      filePath: 'build.ps1'
-      arguments: '-ScriptArgs @("-build-version=$(versionMonoGame).$(versionRevision)", "-build-target=BuildWindowsDX")'
-  - task: PowerShell@2
+    steps:
+    - task: PowerShell@2
+      displayName: Cake Build WindowsDX
+      inputs:
+        filePath: 'build.ps1'
+        arguments: '-ScriptArgs @("-build-version=$(versionMonoGame).$(versionRevision)", "-build-target=BuildWindowsDX")'
+
+  - job:
     displayName: Build WindowsUniversal
-    inputs:
-      filePath: 'build.ps1'
-      arguments: '-ScriptArgs @("-build-version=$(versionMonoGame).$(versionRevision)", "-build-target=BuildWindowsUWP")'
-  - task: PublishPipelineArtifact@1
-    inputs:
-      targetPath: 'bin/DesktopGL/Release/*.nupkg'
+    steps:
+    - task: PowerShell@2
+      displayName: Cake Build WindowsUniversal
+      inputs:
+        filePath: 'build.ps1'
+        arguments: '-ScriptArgs @("-build-version=$(versionMonoGame).$(versionRevision)", "-build-target=BuildWindowsUWP")'
