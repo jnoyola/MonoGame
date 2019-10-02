@@ -1,0 +1,17 @@
+trigger:
+- develop
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  versionMonoGame: '3.7.1'
+  versionRevision: $[counter(variables['versionMonoGame'], 0)]
+
+name: $(versionMonoGame).$(versionRevision)
+
+steps:
+- task: PowerShell@2
+  inputs:
+    filePath: './build.ps1'
+    arguments: '-ScriptArgs "-build-version=$(versionMonoGame).$(versionRevision)"'
