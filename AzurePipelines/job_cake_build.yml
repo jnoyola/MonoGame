@@ -2,6 +2,7 @@ parameters:
   vmImage: ''
   project: ''
   target: ''
+  configuration: 'Release'
 
 jobs:
 - job: ${{ parameters.project }}
@@ -15,8 +16,8 @@ jobs:
     displayName: Cake Build ${{ parameters.project }}
     inputs:
       filePath: 'build.ps1'
-      arguments: '-ScriptArgs @("-build-version=$(Build.BuildNumber)", "-build-target=${{ parameters.target }}")'
+      arguments: '-ScriptArgs @("-build-version=$(Build.BuildNumber)", "-build-target=${{ parameters.target }}", "-build-configuration=${{ parameters.configuration }}")'
   - task: PublishPipelineArtifact@1
     displayName: Publish Artifact ${{ parameters.project }}
     inputs:
-      targetPath: 'MonoGame.Framework/bin/${{ parameters.project }}/Release/HollowGames.Framework.${{ parameters.project }}.$(Build.BuildNumber).nupkg'
+      targetPath: 'MonoGame.Framework/bin/${{ parameters.project }}/${{ parameters.configuration }}/HollowGames.Framework.${{ parameters.project }}.$(Build.BuildNumber).nupkg'
