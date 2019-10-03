@@ -20,4 +20,4 @@ jobs:
   - task: PublishPipelineArtifact@1
     displayName: Publish Artifact ${{ parameters.project }}
     inputs:
-      targetPath: 'MonoGame.Framework/bin/${{ parameters.project }}/${{ parameters.configuration }}/HollowGames.Framework.${{ parameters.project }}.$(Build.BuildNumber).nupkg'
+      targetPath: 'MonoGame.Framework/bin'
