@@ -1,0 +1,23 @@
+parameters:
+  vmImage: ''
+  project: ''
+  target: ''
+  configuration: 'Release'
+
+jobs:
+- job: ${{ parameters.project }}
+  displayName: ${{ parameters.project }}
+  pool:
+    vmImage: macOS-10.14
+  steps:
+  - checkout: self
+    submodules: recursive
+  - task: Bash@3
+    displayName: Cake Build ${{ parameters.project }}
+    inputs:
+      filePath: 'build.sh'
+      arguments: '-build-version=$(Build.BuildNumber) -build-target=${{ parameters.target }} -build-configuration=${{ parameters.configuration }}'
+  - task: PublishPipelineArtifact@1
+    displayName: Publish Artifact ${{ parameters.project }}
+    inputs:
+      targetPath: 'MonoGame.Framework/bin/${{ parameters.project }}/${{ parameters.configuration }}/HollowGames.Framework.${{ parameters.project }}.$(Build.BuildNumber).nupkg'
