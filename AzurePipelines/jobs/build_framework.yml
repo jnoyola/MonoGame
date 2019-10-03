@@ -16,7 +16,7 @@ jobs:
     displayName: Cake Build ${{ parameters.project }}
     inputs:
       filePath: 'build.ps1'
-      arguments: '-ScriptArgs @("-build-version=$(Build.BuildNumber)", "-build-target=${{ parameters.target }}", "-build-configuration=${{ parameters.configuration }}")'
+      arguments: '-ScriptArgs "-build-version=$(Build.BuildNumber)","-build-target=${{ parameters.target }}","-build-configuration=${{ parameters.configuration }}"'
   - task: PublishPipelineArtifact@1
     displayName: Publish Artifact ${{ parameters.project }}
     inputs:
