@@ -1,0 +1,20 @@
+parameters:
+  vmImage: ''
+  project: ''
+  target: ''
+
+jobs:
+- job:
+  displayName: Build ${{ parameters.project }}
+  pool:
+    vmImage: ${{ parameters.vmImage }}
+  steps:
+  - task: PowerShell@2
+    displayName: Cake Build ${{ parameters.project }}
+    inputs:
+      filePath: 'build.ps1'
+      arguments: '-ScriptArgs @("-build-version=$(Build.BuildNumber)", "-build-target=${{ parameters.target }}")'
+  - task: PublishPipelineArtifact@1
+    displayName: Publish Artifact ${{ parameters.project }}
+    inputs:
+      targetPath: 'MonoGame.Framework/bin/${{ parameters.project }}/Release/HollowGames.Framework.${{ parameters.project }}.$(Build.BuildNumber).nupkg'
