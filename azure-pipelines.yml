@@ -26,7 +26,7 @@ stages:
         arguments: '-ScriptArgs @("-build-version=$(versionMonoGame).$(versionRevision)", "-build-target=BuildDesktopGL")'
     - task: PublishPipelineArtifact@1
       inputs:
-        targetPath: 'MonoGame.Framework/bin/DesktopGL/Release/*.nupkg'
+        targetPath: 'MonoGame.Framework/bin/DesktopGL/Release/MonoGame.Framework.DesktopGL.$(versionMonoGame).$(versionRevision).nupkg'
 
   - job:
     displayName: Build WindowsDX
