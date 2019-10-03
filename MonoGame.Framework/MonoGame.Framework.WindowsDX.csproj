@@ -8,7 +8,7 @@
 
 This package provides you with MonoGame Framework that uses DirectX for rendering and works on Windows.</Description>
     <PackageTags>monogame;.net core;core;.net standard;standard;windowsdx</PackageTags>
-    <PackageId>MonoGame.Framework.WindowsDX</PackageId>
+    <PackageId>HollowGames.Framework.WindowsDX</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
