@@ -23,10 +23,10 @@ stages:
       displayName: Cake Build DesktopGL
       inputs:
         filePath: 'build.ps1'
-        arguments: '-ScriptArgs @("-build-version=$(versionMonoGame).$(versionRevision)", "-build-target=BuildDesktopGL")'
+        arguments: '-ScriptArgs @("-build-version=$(Build.BuildNumber)", "-build-target=BuildDesktopGL")'
     - task: PublishPipelineArtifact@1
       inputs:
-        targetPath: 'MonoGame.Framework/bin'
+        targetPath: 'MonoGame.Framework/bin/DesktopGL/Release/HollowGames.Framework.DesktopGL.$(Build.BuildNumber).nupkg'
 
   - job:
     displayName: Build WindowsDX
@@ -35,7 +35,7 @@ stages:
       displayName: Cake Build WindowsDX
       inputs:
         filePath: 'build.ps1'
-        arguments: '-ScriptArgs @("-build-version=$(versionMonoGame).$(versionRevision)", "-build-target=BuildWindowsDX")'
+        arguments: '-ScriptArgs @("-build-version=$(Build.BuildNumber)", "-build-target=BuildWindowsDX")'
 
   - job:
     displayName: Build WindowsUniversal
@@ -44,4 +44,4 @@ stages:
       displayName: Cake Build WindowsUniversal
       inputs:
         filePath: 'build.ps1'
-        arguments: '-ScriptArgs @("-build-version=$(versionMonoGame).$(versionRevision)", "-build-target=BuildWindowsUWP")'
+        arguments: '-ScriptArgs @("-build-version=$(Build.BuildNumber)", "-build-target=BuildWindowsUWP")'
