@@ -12,20 +12,17 @@ jobs:
 - template: job_cake_build.yml
   parameters:
     vmImage: windows-2019
-    displayName: Build DesktopGL
-    target: BuildDesktopGL
     project: DesktopGL
+    target: BuildDesktopGL
 
 - template: job_cake_build.yml
   parameters:
     vmImage: windows-2019
-    displayName: Build DesktopGL
-    target: BuildDesktopGL
-    project: DesktopGL
+    project: WindowsDX
+    target: BuildWindowsDX
 
 - template: job_cake_build.yml
   parameters:
     vmImage: windows-2019
-    displayName: Build DesktopGL
-    target: BuildDesktopGL
-    project: DesktopGL
+    project: WindowsUniversal
+    target: BuildUWP
