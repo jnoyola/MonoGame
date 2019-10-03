@@ -44,4 +44,4 @@ stages:
       displayName: Cake Build WindowsUniversal
       inputs:
         filePath: 'build.ps1'
-        arguments: '-ScriptArgs @("-build-version=$(Build.BuildNumber)", "-build-target=BuildWindowsUWP")'
+        arguments: '-ScriptArgs @("-build-version=$(Build.BuildNumber)", "-build-target=BuildWindowsDX")'
