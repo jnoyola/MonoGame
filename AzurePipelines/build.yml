@@ -23,6 +23,6 @@ jobs:
 
 - template: job_cake_build.yml
   parameters:
-    vmImage: windows-2019
+    vmImage: vs2017-win2016
     project: WindowsUniversal
     target: BuildUWP
