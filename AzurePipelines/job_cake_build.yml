@@ -9,6 +9,8 @@ jobs:
   pool:
     vmImage: ${{ parameters.vmImage }}
   steps:
+  - checkout: self
+    submodules: recursive
   - task: PowerShell@2
     displayName: Cake Build ${{ parameters.project }}
     inputs:
