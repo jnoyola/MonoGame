@@ -8,7 +8,7 @@ jobs:
 - job: ${{ parameters.project }}
   displayName: ${{ parameters.project }}
   pool:
-    vmImage: ${{ parameters.vmImage }}
+    vmImage: vs2017-win2016
   steps:
   - checkout: self
     submodules: recursive
