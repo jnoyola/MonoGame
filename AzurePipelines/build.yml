@@ -1,0 +1,31 @@
+trigger:
+- develop
+
+variables:
+  versionMonoGame: '3.7.1'
+  versionRevision: $[counter(variables['versionMonoGame'], 0)]
+
+name: $(versionMonoGame).$(versionRevision)
+
+jobs:
+
+- template: job_cake_build.yml
+  parameters:
+    vmImage: windows-2019
+    displayName: Build DesktopGL
+    target: BuildDesktopGL
+    project: DesktopGL
+
+- template: job_cake_build.yml
+  parameters:
+    vmImage: windows-2019
+    displayName: Build DesktopGL
+    target: BuildDesktopGL
+    project: DesktopGL
+
+- template: job_cake_build.yml
+  parameters:
+    vmImage: windows-2019
+    displayName: Build DesktopGL
+    target: BuildDesktopGL
+    project: DesktopGL
