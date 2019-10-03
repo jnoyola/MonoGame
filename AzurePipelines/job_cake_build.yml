@@ -4,8 +4,8 @@ parameters:
   target: ''
 
 jobs:
-- job:
-  displayName: Build ${{ parameters.project }}
+- job: ${{ parameters.project }}
+  displayName: ${{ parameters.project }}
   pool:
     vmImage: ${{ parameters.vmImage }}
   steps:
