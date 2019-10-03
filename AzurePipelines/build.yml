@@ -9,32 +9,27 @@ name: $(versionMonoGame).$(versionRevision)
 
 jobs:
 
-- template: jobs/build_framework.yml
+- template: jobs/win_build_framework.yml
   parameters:
-    vmImage: windows-2019
     project: DesktopGL
     target: BuildDesktopGL
 
-- template: jobs/build_framework.yml
+- template: jobs/win_build_framework.yml
   parameters:
-    vmImage: windows-2019
     project: WindowsDX
     target: BuildWindowsDX
 
-- template: jobs/build_framework.yml
+- template: jobs/win_build_framework.yml
   parameters:
-    vmImage: vs2017-win2016
     project: WindowsUniversal
     target: BuildUWP
 
-- template: jobs/build_framework.yml
+- template: jobs/mac_build_framework.yml
   parameters:
-    vmImage: macOS-10.14
     project: AndroidCore
     target: BuildAndroid
 
-- template: jobs/build_framework.yml
+- template: jobs/mac_build_framework.yml
   parameters:
-    vmImage: macOS-10.14
     project: iOSCore
     target: BuildiOS
