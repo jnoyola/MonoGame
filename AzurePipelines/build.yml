@@ -12,24 +12,29 @@ jobs:
 - template: jobs/win_build_framework.yml
   parameters:
     project: DesktopGL
+    platform: DesktopGL
     target: BuildDesktopGL
 
 - template: jobs/win_build_framework.yml
   parameters:
     project: WindowsDX
+    platform: WindowsDX
     target: BuildWindowsDX
 
 - template: jobs/win_build_framework.yml
   parameters:
     project: WindowsUniversal
+    platform: WindowsUniversal
     target: BuildUWP
 
 - template: jobs/mac_build_framework.yml
   parameters:
     project: AndroidCore
+    platform: Android
     target: BuildAndroid
 
 - template: jobs/mac_build_framework.yml
   parameters:
     project: iOSCore
+    platform: iOS
     target: BuildiOS
